@@ -81,6 +81,15 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
             REACH Diagnostic
           </h2>
 
+          {/* Change 7 — Disambiguation line */}
+          <p style={{
+            fontFamily: sans, fontSize: "clamp(0.875rem, 1.4vw, 0.975rem)",
+            color: "rgba(255,255,255,0.72)", lineHeight: 1.75, maxWidth: 520,
+            marginBottom: "0.75rem",
+          }}>
+            This is not a quiz. It is a pre-inspection scan of your compliance exposure — the same exposure an FMCSA investigator would find if they opened your file today.
+          </p>
+
           <p style={{
             fontFamily: sans, fontSize: "clamp(0.925rem, 1.5vw, 1.05rem)",
             color: "rgba(200,169,110,0.8)", lineHeight: 1.4, maxWidth: 520,

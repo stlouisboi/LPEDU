@@ -128,6 +128,29 @@ export default function Ground0Page() {
           </div>
 
           <div style={{ borderTop: "1px solid rgba(197,160,89,0.15)", paddingTop: "2rem" }}>
+
+            {/* Change 8 — After the Briefing block */}
+            <div data-testid="after-briefing-block" style={{
+              background: "rgba(197,160,89,0.06)",
+              border: "1px solid rgba(197,160,89,0.20)",
+              borderLeft: "3px solid #C5A059",
+              padding: "1.5rem 1.75rem",
+              marginBottom: "2rem",
+            }}>
+              <p style={{
+                fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace",
+                fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.20em",
+                textTransform: "uppercase", color: "rgba(197,160,89,0.80)",
+                marginBottom: "0.75rem",
+              }}>After the Briefing</p>
+              <p style={{
+                fontFamily: "'Inter',sans-serif", fontSize: "0.924rem",
+                color: "rgba(255,255,255,0.80)", lineHeight: 1.8, margin: 0,
+              }}>
+                If Vince determines LP-COH-002 is appropriate for your operation, you will receive an admission decision within 24–48 hours. Cohort investment, timeline, and onboarding materials are provided at that point. If the timing or fit is off, Vince will tell you directly — and point you to the resource that addresses your current exposure.
+              </p>
+            </div>
+
             <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.924rem", color: "rgba(255,255,255,0.60)", lineHeight: 1.8, maxWidth: 600, marginBottom: "1.5rem" }}>
               Complete the REACH Diagnostic first. Ground 0 is calibrated to your REACH result — the readiness check maps your current exposure so Ground 0 can address it directly.
             </p>

@@ -3,6 +3,7 @@ import SiteHeader from '../components/home/SiteHeader';
 import HeroSection from '../components/home/HeroSection';
 import ProgramMetricsStrip from '../components/home/ProgramMetricsStrip';
 import FailurePatternSection from '../components/home/FailurePatternSection';
+import HowItWorksSection from '../components/home/HowItWorksSection';
 import CheckpointTimelineSection from '../components/home/CheckpointTimelineSection';
 import VinceVideoLetterSection from '../components/home/VinceVideoLetterSection';
 import CohortCalendarSection from '../components/home/CohortCalendarSection';
@@ -22,6 +23,7 @@ export default function HomePage() {
         <HeroSection />
         <ProgramMetricsStrip />
         <FailurePatternSection />
+        <HowItWorksSection />
         <CheckpointTimelineSection />
         <VinceVideoLetterSection />
         <CohortCalendarSection />

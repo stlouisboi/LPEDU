@@ -6,7 +6,7 @@ const CREDS = [
   { icon: Shield, text: 'U.S. Navy Safety Veteran' },
   { icon: Award, text: 'OSHA 30-Hour Certified' },
   { icon: Clock, text: '25+ Years Regulatory Leadership' },
-  { icon: Users, text: 'Founder, LaunchPath Transport EDU' },
+  { icon: Users, text: 'Founder, LaunchPath Transportation EDU LLC' },
 ];
 
 const mono = { fontFamily: 'JetBrains Mono, monospace' };
@@ -27,18 +27,47 @@ export default function VinceVideoLetterSection({ videoUrl }) {
                 <iframe src={videoUrl} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }} allow="autoplay; fullscreen" allowFullScreen />
               ) : (
                 <>
-                  {/* Placeholder backdrop */}
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ textAlign: 'center' }}>
-                      <div style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.72)', marginBottom: '2rem' }}>Director's Briefing</div>
-                      <button onClick={() => videoUrl && setPlaying(true)} aria-label="Play director's briefing" style={{ width: 64, height: 64, background: 'rgba(139,115,85,0.9)', border: 'none', cursor: videoUrl ? 'pointer' : 'default', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', borderRadius: 0 }}>
-                        <Play size={22} color="#1C2B3A" fill="#1C2B3A" />
-                      </button>
-                      <div style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(250,248,244,0.80)' }}>
-                        {videoUrl ? 'Click to play' : 'Recording coming soon'}
+                  {videoUrl ? (
+                    /* Play state — video URL available */
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0D1B2A 0%, #1C2B3A 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ textAlign: 'center' }}>
+                        <div style={{ ...mono, fontSize: 9, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'rgba(250,248,244,0.72)', marginBottom: '2rem' }}>Director's Briefing</div>
+                        <button onClick={() => setPlaying(true)} aria-label="Play director's briefing" style={{ width: 64, height: 64, background: 'rgba(139,115,85,0.9)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', borderRadius: 0 }}>
+                          <Play size={22} color="#1C2B3A" fill="#1C2B3A" />
+                        </button>
+                        <div style={{ ...mono, fontSize: 10, letterSpacing: '0.12em', color: 'rgba(250,248,244,0.80)' }}>Click to play</div>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    /* Teaser state — recording in production */
+                    <div data-testid="directors-briefing-teaser" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(160deg, #0D1B2A 0%, #111D2C 100%)', display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', padding: '2rem 2.25rem', overflowY: 'auto' }}>
+                      <div>
+                        <div style={{ ...mono, fontSize: 9, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#C8A96E', marginBottom: '1rem' }}>LP-VID-001 · Director's Briefing</div>
+                        <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.85rem', color: 'rgba(250,248,244,0.75)', lineHeight: 1.7, marginBottom: '1.25rem', maxWidth: 400 }}>
+                          Recording in production — available before LP-COH-002 opens. In the briefing, Vince covers:
+                        </p>
+                        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                          {[
+                            'Why most new carriers fail the New Entrant audit inside 18 months',
+                            'What the FMCSA investigator is looking for when they open your file',
+                            'How the LaunchPath Standard closes the gap between operations and documentation',
+                            'What the Ground 0 Briefing covers and what to expect',
+                          ].map((item, i) => (
+                            <li key={i} style={{ display: 'flex', gap: '0.625rem', alignItems: 'flex-start' }}>
+                              <span style={{ color: '#C8A96E', fontSize: '0.75rem', flexShrink: 0, marginTop: '0.15rem' }}>—</span>
+                              <span style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.8rem', color: 'rgba(250,248,244,0.72)', lineHeight: 1.65 }}>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '0.8rem', color: 'rgba(250,248,244,0.55)', lineHeight: 1.65, marginBottom: '1.25rem', fontStyle: 'italic', maxWidth: 380 }}>
+                          Request a Ground 0 Briefing now — Vince will cover this and your specific exposure in the session.
+                        </p>
+                        <Link to="/ground-0-briefing" style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: '#C8A96E', color: '#0D1B2A', padding: '0.625rem 1.25rem', textDecoration: 'none', fontWeight: 700 }}>
+                          Request Ground 0 Briefing →
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                 </>
               )}
             </div>

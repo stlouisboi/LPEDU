@@ -28,9 +28,14 @@ export default function HeroSection() {
             Twelve weeks to install the compliance system FMCSA will inspect — a clean audit preserves the authority; an empty file ends it.
           </p>
 
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(2.4rem,5vw,4.2rem)', color: '#1C2B3A', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontWeight: 900, fontSize: 'clamp(2.4rem,5vw,4.2rem)', color: '#1C2B3A', lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: '1rem' }}>
             Install the compliance system FMCSA expects to find before they open your file.
           </h1>
+
+          {/* Change 1 — Plain-language contrast line */}
+          <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '1rem', color: 'rgba(28,43,58,0.72)', lineHeight: 1.75, marginBottom: '1.75rem', maxWidth: 520 }}>
+            This is not a compliance course. It is a 90-day installation of the compliance system FMCSA will inspect.
+          </p>
 
           <p style={{ fontFamily: 'Instrument Sans, sans-serif', fontSize: '1.05rem', color: 'rgba(28,43,58,0.80)', lineHeight: 1.8, marginBottom: '2.25rem', maxWidth: 520 }}>
             A 90-day, 12-carrier guided implementation program where safety director Vince Lawrence personally reviews your actual driver, equipment, hours-of-service, and drug-and-alcohol files at five critical checkpoints — securing your authority before an investigator exposes the gaps.
