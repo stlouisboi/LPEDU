@@ -90,6 +90,33 @@ export default function ToolsIndexPage() {
 
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "4rem 1.5rem 6rem" }}>
 
+        {/* REACH Diagnostic — Entry Point Card */}
+        <div style={{ background: NAVY, borderTop: `3px solid ${GOLD}`, marginBottom: "2.5rem", padding: "2rem" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "0.875rem", flexWrap: "wrap" }}>
+            <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", margin: 0 }}>LP-MOD-REACH</p>
+            <span data-testid="reach-entry-point-badge" style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: GOLD, background: `${GOLD}18`, border: `1px solid ${GOLD}50`, padding: "0.2rem 0.6rem" }}>
+              ENTRY POINT
+            </span>
+          </div>
+          <h2 style={{ fontFamily: display, fontWeight: 700, fontSize: "1.5rem", color: "#FFFFFF", letterSpacing: "-0.015em", marginBottom: "0.625rem" }}>
+            REACH Diagnostic
+          </h2>
+          <p style={{ fontFamily: sans, fontSize: "1rem", color: "rgba(255,255,255,0.62)", lineHeight: 1.75, maxWidth: 560, marginBottom: "1.75rem" }}>
+            15 questions across your finances, records, drivers, and operating history. Identifies exactly where FMCSA already has reach into your operation before they exercise it. Run this first — your result determines which tools below are relevant to your current exposure.
+          </p>
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "1.25rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+            <p style={{ fontFamily: sans, fontSize: "0.857rem", color: "rgba(255,255,255,0.45)", margin: 0 }}>Free · No email required · Results immediate</p>
+            <Link to="/reach-diagnostic" data-testid="tool-cta-reach" style={{ fontFamily: sans, fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, background: GOLD, padding: "0.875rem 1.75rem", textDecoration: "none" }}>
+              Run REACH Diagnostic →
+            </Link>
+          </div>
+        </div>
+
+        {/* Hierarchy statement */}
+        <p data-testid="tools-hierarchy-statement" style={{ fontFamily: mono, fontSize: "0.762rem", color: "rgba(0,34,68,0.55)", lineHeight: 1.7, marginBottom: "2rem", borderLeft: `2px solid ${GOLD}`, paddingLeft: "0.875rem" }}>
+          START HERE → Run the REACH Diagnostic first. It takes 5 minutes and determines which tools below are relevant to your current exposure.
+        </p>
+
         {/* Access notice — only for load analyzer gating */}
         {false && (
           <div style={{ background: "#FFFFFF", border: "1px solid rgba(11,22,40,0.10)", borderLeft: `3px solid ${GOLD}`, padding: "1.25rem 1.75rem", marginBottom: "2.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }}>

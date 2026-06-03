@@ -1,5 +1,7 @@
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { Link } from '../../compat/Link';
+import KCArticleReachCTA from '../KCArticleReachCTA';
 
 const mono = { fontFamily: 'JetBrains Mono, monospace' };
 
@@ -13,8 +15,15 @@ const NAV = [
 ];
 
 export default function SiteFooter() {
+  const router = useRouter();
+  const path = router?.pathname ?? '';
+  // Show KC REACH CTA on all KC article pages (not the index)
+  const isKCArticle = path.startsWith('/knowledge-center/') && path !== '/knowledge-center';
+
   return (
-    <footer style={{ background: '#1C2B3A', borderTop: '1px solid rgba(250,248,244,0.1)', padding: '3rem 1.5rem' }}>
+    <>
+      {isKCArticle && <KCArticleReachCTA />}
+      <footer style={{ background: '#1C2B3A', borderTop: '1px solid rgba(250,248,244,0.1)', padding: '3rem 1.5rem' }}>
       <div style={{ maxWidth: 1280, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '2rem', alignItems: 'start' }} className="lp-footer-grid">
 
         {/* Col 1 */}
@@ -56,5 +65,6 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

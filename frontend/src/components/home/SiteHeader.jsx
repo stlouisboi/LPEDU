@@ -8,6 +8,8 @@ const NAV_PRIMARY = [
   { label: 'Documents',   href: '/compliance-library' },
   { label: 'Diagnostic',  href: '/reach-diagnostic' },
   { label: 'Knowledge',   href: '/knowledge-center' },
+  { label: 'Tools',       href: '/tools' },
+  { label: 'Cases',       href: '/case-studies' },
 ];
 
 const NAV_TOOLS = [
