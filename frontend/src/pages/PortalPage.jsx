@@ -9,6 +9,7 @@ import { ALL_MODULE_DATA, MODULE_1_DATA } from "../data/moduleData";
 import { CURRICULUM, MODULE_OVERVIEWS } from "../data/portalData";
 import PortalHeader from "../components/portal/PortalHeader";
 import PortalSidebar from "../components/portal/PortalSidebar";
+import ModuleStatusGrid from "../components/portal/ModuleStatusGrid";
 import LockedModuleView, { EnrollCTA } from "../components/portal/LockedModuleView";
 import ModuleOverviewCard from "../components/portal/ModuleOverviewCard";
 import DeliverablesPortal from "../components/portal/DeliverablesPortal";
@@ -496,7 +497,12 @@ export default function PortalPage() {
       <SiteHeader />
 
       {/* Portal header strip */}
-      <PortalHeader user={user} onLogout={handleLogout} />
+      <PortalHeader
+        user={user}
+        onLogout={handleLogout}
+        auditDaysRemaining={auditWindow?.has_data && auditWindow.window_open ? auditWindow.days_remaining : null}
+        registryIssued={isAllCoreDone()}
+      />
 
       {/* Main layout */}
       <div
@@ -517,6 +523,7 @@ export default function PortalPage() {
           isModuleLocked={isModuleLocked}
           getModuleStatus={getModuleStatus}
           isAllCoreDone={isAllCoreDone}
+          auditWindow={auditWindow}
         />
 
         {/* ── Main Content ── */}
@@ -778,6 +785,20 @@ export default function PortalPage() {
               {/* Ground 0 is selected (always unlocked) */}
               {selected?.id === "ground-0" && (
                 <div data-testid="ground0-module-content">
+
+                  {/* ── Program Dashboard Grid — paid users only ── */}
+                  {hasCohortAccess && (
+                    <ModuleStatusGrid
+                      hasCohortAccess={hasCohortAccess}
+                      gateStatuses={gateStatuses}
+                      isModuleLocked={isModuleLocked}
+                      getModuleStatus={getModuleStatus}
+                      isAllCoreDone={isAllCoreDone}
+                      onSelect={setSelectedId}
+                      selectedId={selectedId}
+                    />
+                  )}
+
                   <p
                     style={{
                       fontFamily: "'Inter', sans-serif",
