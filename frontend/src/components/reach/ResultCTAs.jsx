@@ -15,22 +15,13 @@ export default function ResultCTAs({ result }) {
     return (
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem" }}>
         <Link
-          to="/program"
-          data-testid="cta-proceed-standard"
-          style={{ ...btnBase, background: "#8B7355", color: "#000F1F" }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#8B7355")}
-        >
-          Proceed to the 90-Day Standard →
-        </Link>
-        <Link
           to="/ground-0-briefing"
           data-testid="cta-begin-ground-0"
-          style={{ ...btnBase, background: "transparent", color: "rgba(255,255,255,0.65)", border: "1px solid rgba(255,255,255,0.20)" }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+          style={{ ...btnBase, background: "#C8A96E", color: "#000F1F" }}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#e8a520")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#C8A96E")}
         >
-          Review Ground 0 First
+          Access Ground 0 — Free →
         </Link>
       </div>
     );

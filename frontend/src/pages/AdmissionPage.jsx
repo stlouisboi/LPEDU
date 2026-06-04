@@ -28,10 +28,18 @@ export default function AdmissionPage() {
     message: "",
   });
   const [admissionId, setAdmissionId] = useState(null);
-  const [state, setState] = useState("idle"); // idle | loading | success | checkout | error
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
-  const [seats, setSeats] = useState(null); // { remaining, total, taken }
+  const [state, setState] = useState("idle"); // idle | loading | success | error
+  const [seats, setSeats] = useState(null);
+  const [gateCleared, setGateCleared] = useState(false);
+  const [gateChecked, setGateChecked] = useState(false);
   const API = process.env.REACT_APP_BACKEND_URL;
+
+  // ── CORRECTION 1: Gate — G0 completion required ──
+  useEffect(() => {
+    const cleared = typeof window !== "undefined" && localStorage.getItem("lp_g0_admission_gate") === "1";
+    setGateCleared(cleared);
+    setGateChecked(true);
+  }, []);
 
   useEffect(() => {
     fetch(`${API}/api/cohort-seats`)
@@ -141,6 +149,37 @@ export default function AdmissionPage() {
       `}} />
       <SiteHeader />
 
+      {/* ── G0 Gate — show if not cleared ── */}
+      {gateChecked && !gateCleared && (
+        <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px", position: "relative", zIndex: 1 }}>
+          <div style={{
+            background: "rgba(212,144,10,0.04)", border: "1px solid rgba(212,144,10,0.18)",
+            borderLeft: "3px solid rgba(212,144,10,0.50)", padding: "2rem 2rem",
+          }}>
+            <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "1rem" }}>
+              LP-ADM-001 · ACCESS SEQUENCE
+            </p>
+            <h2 style={{ fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700, fontSize: "clamp(1.25rem, 2.5vw, 1.625rem)", color: "#FFFFFF", marginBottom: "1rem", lineHeight: 1.2 }}>
+              Ground 0 completion is required before this step.
+            </h2>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.938rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.8, marginBottom: "1.75rem" }}>
+              The Admission Request Form is accessible after you complete Ground 0 and receive your readiness determination. If you have already completed Ground 0, return here using the link provided at completion.
+            </p>
+            <a
+              href="/portal"
+              data-testid="gate-go-to-portal"
+              style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", background: "#d4900a", color: "#0b1628", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "0.875rem 1.75rem", textDecoration: "none", transition: "background 0.2s" }}
+              onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
+              onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
+            >
+              Access Ground 0 →
+            </a>
+          </div>
+          <FooterSection />
+        </div>
+      )}
+
+      {gateChecked && gateCleared && (
       <div style={{ maxWidth: 640, margin: "0 auto", padding: "96px 24px 80px", position: "relative", zIndex: 1 }}>
 
         {/* Back link */}
@@ -332,99 +371,46 @@ export default function AdmissionPage() {
         {state === "success" ? (
           <div data-testid="admission-success">
             <div style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.625rem",
-              background: "rgba(34,197,94,0.08)",
-              border: "1px solid rgba(34,197,94,0.25)",
-              padding: "0.6rem 1.25rem",
-              marginBottom: "2rem",
+              display: "inline-flex", alignItems: "center", gap: "0.625rem",
+              background: "rgba(34,197,94,0.08)", border: "1px solid rgba(34,197,94,0.25)",
+              padding: "0.6rem 1.25rem", marginBottom: "2rem",
             }}>
               <span style={{ color: "#22c55e" }}>✓</span>
-              <p style={{
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 600,
-                fontSize: "var(--text-sm)",
-                color: "rgba(34,197,94,0.95)",
-                margin: 0,
-              }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600, fontSize: "0.857rem", color: "rgba(34,197,94,0.95)", margin: 0 }}>
                 Admission Request Submitted
               </p>
             </div>
 
             <h2 style={{
-              fontFamily: "'Newsreader', 'Playfair Display', serif",
-              fontWeight: 700,
-              fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)",
-              color: "#FFFFFF",
-              marginBottom: "1.25rem",
-              lineHeight: 1.2,
+              fontFamily: "'Newsreader', 'Playfair Display', serif", fontWeight: 700,
+              fontSize: "clamp(1.35rem, 2.5vw, 1.75rem)", color: "#FFFFFF",
+              marginBottom: "1.5rem", lineHeight: 1.2,
             }}>
               Your request has been received.
             </h2>
 
             <p style={{
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.78)",
-              lineHeight: 1.8,
-              marginBottom: "2rem",
-              maxWidth: 480,
+              fontFamily: "'Inter', sans-serif", fontSize: "1rem",
+              color: "rgba(255,255,255,0.78)", lineHeight: 1.85,
+              marginBottom: "2rem", maxWidth: 520,
             }}>
-              Complete your enrollment now by securing your cohort seat. Payment of <strong style={{ color: "#d4900a" }}>$2,500</strong> confirms your place in the LaunchPath Standard. No refunds are issued after cohort start.
+              Vince will review your submission and be in touch within 24–48 hours. The briefing is a private session — not a sales call. Come prepared to discuss your current compliance status and your authority activation date.
             </p>
 
-            <button
-              data-testid="proceed-to-payment-btn"
-              onClick={handleProceedToPayment}
-              disabled={checkoutLoading}
-              className="lp-scan-btn"
-              style={{
-                minHeight: 54,
-                background: "#d4900a",
-                color: "#0b1628",
-                border: "none",
-                fontFamily: "'Inter', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.975rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                cursor: checkoutLoading ? "wait" : "pointer",
-                opacity: checkoutLoading ? 0.75 : 1,
-                transition: "background 0.2s, opacity 0.2s",
-                padding: "0 2.5rem",
-                display: "inline-block",
-                marginBottom: "1.25rem",
-              }}
-              onMouseEnter={(e) => { if (!checkoutLoading) e.currentTarget.style.background = "#D4B87A"; }}
-              onMouseLeave={(e) => { if (!checkoutLoading) e.currentTarget.style.background = "#d4900a"; }}
-            >
-              {checkoutLoading ? "Redirecting to payment..." : "Proceed to Payment — $2,500 →"}
-            </button>
-
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "0.714rem",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "rgba(250,248,244,0.72)",
-              marginBottom: "2.5rem",
+            <div style={{
+              background: "rgba(197,160,89,0.04)", border: "1px solid rgba(197,160,89,0.14)",
+              borderLeft: "2px solid rgba(212,144,10,0.40)", padding: "1.25rem 1.5rem",
             }}>
-              Powered by Stripe · Secure checkout
-            </p>
-
-            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: "1.75rem" }} />
-
-            <p style={{
-              fontFamily: "'Newsreader', 'Playfair Display', serif",
-              fontWeight: 600,
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.75)",
-              fontStyle: "italic",
-              lineHeight: 1.75,
-              maxWidth: 480,
-            }}>
-              "The first ninety days do not test ambition. They test operational structure."
-            </p>
+              <p style={{
+                fontFamily: "'Inter', sans-serif", fontSize: "0.857rem",
+                color: "rgba(255,255,255,0.60)", lineHeight: 1.75, margin: 0,
+              }}>
+                If you do not hear back within 48 hours:{" "}
+                <a href="mailto:vince@launchpathedu.com" style={{ color: "#C8A96E", textDecoration: "none" }}>vince@launchpathedu.com</a>
+                {" "}·{" "}
+                <a href="tel:+13363298899" style={{ color: "#C8A96E", textDecoration: "none" }}>(336) 329-8899</a>
+              </p>
+            </div>
           </div>
         ) : (
           /* Form */
@@ -664,9 +650,10 @@ export default function AdmissionPage() {
             </div>
           </form>
         )}
-      </div>
 
-      <FooterSection />
+        <FooterSection />
+      </div>
+      )}
     </div>
   );
 }

@@ -97,8 +97,9 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
         {/* Single continuation CTA */}
         <div style={{ padding: "1.75rem 2rem" }}>
           <a
-            href="/reach-diagnostic"
+            href="/admission"
             data-testid="g0-completion-cta"
+            onClick={() => { if (typeof window !== "undefined") localStorage.setItem("lp_g0_admission_gate", "1"); }}
             style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",
               background: "#d4900a", color: "#000F1F",
@@ -111,7 +112,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
             onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
             onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
           >
-            <span>Continue to Install the LaunchPath Operating System</span>
+            <span>Submit Admission Request</span>
             <ArrowRight size={18} />
           </a>
           <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.52)", marginTop: "0.875rem", lineHeight: 1.6 }}>

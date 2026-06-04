@@ -4,7 +4,6 @@ import AnnouncementBar from "../components/home/AnnouncementBar";
 import SiteHeader from "../components/home/SiteHeader";
 import SiteFooter from "../components/home/SiteFooter";
 import { REACHTeaserSection } from "../components/REACHTeaserSection";
-import MCAuditWindow from "../components/MCAuditWindow";
 import { CATEGORIES, QUESTIONS, CATEGORY_INSIGHTS, RESULT_CONFIG, CATEGORY_GAP_CONFIG, getFlaggedNames } from "../data/reachData";
 import CategoryBreakdown from "../components/reach/CategoryBreakdown";
 import ResultCTAs from "../components/reach/ResultCTAs";
@@ -186,15 +185,7 @@ export default function REACHAssessmentPage() {
 
       {/* ── INTRO — full clinical diagnostic section ─── */}
       {phase === "intro" && (
-        <>
-          <REACHTeaserSection onBegin={() => setPhase("questions")} />
-          {/* MC Audit Window Calculator */}
-          <section style={{ background: "#152433", padding: "4rem 1.5rem", borderTop: "1px solid rgba(200,169,110,0.12)" }}>
-            <div style={{ maxWidth: 760, margin: "0 auto" }}>
-              <MCAuditWindow />
-            </div>
-          </section>
-        </>
+        <REACHTeaserSection onBegin={() => setPhase("questions")} />
       )}
 
       {/* ── QUESTIONS ─────────────────────────────────── */}
@@ -746,8 +737,8 @@ export default function REACHAssessmentPage() {
                   color: "rgba(255,255,255,0.80)", lineHeight: 1.80, marginBottom: "1.5rem",
                 }}>
                   {scores.a < 9
-                    ? `Your Authority Readiness score shows ${9 - scores.a} point${9 - scores.a > 1 ? "s" : ""} of exposure — the most commonly cited gaps in new entrant audits. The LaunchPath Standard closes this in Weeks 3–6.`
-                    : "Your assessment indicates strong readiness across all five categories. The LaunchPath Standard installs the compliance infrastructure that maintains this through the full audit window."}
+                    ? `Your Authority Readiness score shows ${9 - scores.a} point${9 - scores.a > 1 ? "s" : ""} of exposure — the most commonly cited gaps in new entrant audits. Ground 0 maps this exposure before you make any commitment.`
+                    : "Your foundation is structurally sound. Your operation qualifies for LP-COH-002 review. The next step is Ground 0."}
                 </p>
                 <a
                   href="/launchpath-standard"
@@ -999,7 +990,7 @@ export default function REACHAssessmentPage() {
                     margin: 0,
                     fontStyle: "italic",
                   }}>
-                    "GO means the conditions for survival exist. It does not guarantee success — it means you're ready to install the system. WAIT and NO-GO mean wisdom says 'not yet' so you don't walk into a loss you can't afford."
+                    "GO means the conditions for survival exist. WAIT and NO-GO mean wisdom says 'not yet' — so you don't walk into a loss you can't afford."
                   </p>
                 </div>
               </div>

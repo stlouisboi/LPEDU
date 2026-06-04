@@ -263,7 +263,7 @@ export function REACHTeaserSection({ onBegin, pillarStatuses }) {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", marginBottom: "1rem" }}>
                 {[
-                  { label: "GO",    color: "#27ae60", desc: "Your foundation is structurally sound. We move directly into LP-OS installation." },
+                  { label: "GO",    color: "#27ae60", desc: "Your foundation is structurally sound. Your operation qualifies for LP-COH-002 review. The next step is Ground 0." },
                   { label: "WAIT",  color: "#C8933F", desc: "Gaps exist in specific domains. You see exactly where — resources, records, drivers, or maintenance — and what needs to close before you push harder." },
                   { label: "NO-GO", color: "#e74c3c", desc: "The foundation has failed points that put your authority at risk. We show you precisely where FMCSA or your insurer will reach you first, and what closes each one." },
                 ].map(r => (

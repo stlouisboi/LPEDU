@@ -103,13 +103,13 @@ export const RESULT_CONFIG = {
     rgb: "34,197,94",
     headline: "The conditions to survive are there.",
     bullets: [
-      "GO doesn't mean you're guaranteed to win — it means you've got enough in place to install the guard around your authority.",
-      "Your next step is Ground 0: The Wisdom Module.",
-      "This 90-minute orientation shows you what motor carrier ownership actually requires before you spend money or file paperwork.",
+      "Your diagnostic is complete. Based on your responses, your operation qualifies for LP-COH-002 review.",
+      "The next step is Ground 0 — a free module that maps your compliance exposure across all four pillars before you make any commitment.",
+      "Access Ground 0 below. No payment at this step.",
     ],
-    cta: "Begin Ground 0",
+    cta: "Access Ground 0 — Free",
     ctaHref: "/ground-0-briefing",
-    sub: "GO means the conditions for survival exist. Now install the system that keeps it that way.",
+    sub: "Your foundation is structurally sound. Your operation qualifies for LP-COH-002 review. The next step is Ground 0.",
   },
   WAIT: {
     label: "REACH RESULT: WAIT",

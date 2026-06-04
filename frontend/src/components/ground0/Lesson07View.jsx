@@ -186,13 +186,14 @@ export default function Lesson07View({ onViewCompletion }) {
       {/* Primary CTA */}
       <div style={{ marginBottom: "2rem" }}>
         <a
-          href="/reach-diagnostic"
+          href="/admission"
           data-testid="g0-lesson07-cta"
+          onClick={() => { if (typeof window !== "undefined") localStorage.setItem("lp_g0_admission_gate", "1"); }}
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.97rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "1.25rem 1.75rem", textDecoration: "none", transition: "background 0.2s", width: "100%", boxSizing: "border-box", minHeight: 56 }}
           onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}
           onMouseLeave={e => e.currentTarget.style.background = "#d4900a"}
         >
-          <span>JOIN THE NEXT INSTALL GROUP</span>
+          <span>SUBMIT ADMISSION REQUEST →</span>
           <ArrowRight size={18} />
         </a>
         <p style={{ fontFamily: "'JetBrains Mono', 'IBM Plex Mono', monospace", fontSize: "0.524rem", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.52)", marginTop: "0.875rem", lineHeight: 1.6 }}>

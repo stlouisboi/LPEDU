@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from '../compat/Link';
 import SiteHeader from "../components/home/SiteHeader";
 import FooterSection from "../components/FooterSection";
+import MCAuditWindow from "../components/MCAuditWindow";
 
 const GOLD = "#d4900a";
 const NAVY = "#0b1628";
@@ -239,6 +240,14 @@ export default function ToolsIndexPage() {
           <Link to="/standards" style={{ fontFamily: sans, fontWeight: 600, fontSize: "0.857rem", color: GOLD, textDecoration: "none" }}>
             View the LaunchPath Standard →
           </Link>
+        </div>
+
+        {/* MC Audit Window Calculator — LP-TOOL-005 */}
+        <div style={{ marginTop: "3rem", background: NAVY, padding: "2.5rem 2rem", borderTop: `3px solid ${GOLD}` }}>
+          <p style={{ fontFamily: mono, fontSize: "0.714rem", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: "rgba(212,144,10,0.65)", marginBottom: "1.5rem" }}>
+            LP-TOOL-005 · MC AUDIT WINDOW CALCULATOR
+          </p>
+          <MCAuditWindow />
         </div>
 
       </div>

@@ -4,7 +4,7 @@ import { Link } from '../../compat/Link';
 import { Menu, X } from 'lucide-react';
 
 const NAV_PRIMARY = [
-  { label: 'Standard',    href: '/ground-0-briefing' },
+  { label: 'Standard',    href: '/program' },
   { label: 'Documents',   href: '/compliance-library' },
   { label: 'Diagnostic',  href: '/reach-diagnostic' },
   { label: 'Knowledge',   href: '/knowledge-center' },
@@ -138,7 +138,7 @@ export default function SiteHeader({ activePath = '/' }) {
             <Link to="/portal" className="lp-btn-outline" data-testid="header-portal-btn">
               Portal
             </Link>
-            <Link to="/ground-0-briefing" className="lp-btn-primary" data-testid="header-admission-btn">
+            <Link to="/reach-diagnostic" className="lp-btn-primary" data-testid="header-admission-btn">
               Request Admission
             </Link>
           </div>
@@ -174,7 +174,7 @@ export default function SiteHeader({ activePath = '/' }) {
             <Link to="/portal" onClick={() => setOpen(false)} style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: NAVY, textDecoration: 'none' }}>
               Portal
             </Link>
-            <Link to="/ground-0-briefing" onClick={() => setOpen(false)} style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', background: NAVY, color: BG, padding: '0.75rem 1rem', textDecoration: 'none', textAlign: 'center', marginTop: 4 }}>
+            <Link to="/reach-diagnostic" onClick={() => setOpen(false)} style={{ fontFamily: MONO, fontSize: 11, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', background: NAVY, color: BG, padding: '0.75rem 1rem', textDecoration: 'none', textAlign: 'center', marginTop: 4 }}>
               Request Admission
             </Link>
           </nav>

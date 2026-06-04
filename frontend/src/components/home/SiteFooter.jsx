@@ -105,7 +105,7 @@ export default function SiteFooter() {
             </p>
           </div>
           <Link
-            to="/ground-0-briefing"
+            to="/reach-diagnostic"
             data-testid="footer-admission-cta"
             style={{
               ...mono,

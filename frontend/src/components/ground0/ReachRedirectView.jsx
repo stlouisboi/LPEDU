@@ -30,8 +30,9 @@ export default function ReachRedirectView() {
         </a>
       </div>
       <a
-        href="/reach-diagnostic"
+        href="/admission"
         data-testid="g0-admission-secondary"
+        onClick={() => { if (typeof window !== "undefined") localStorage.setItem("lp_g0_admission_gate", "1"); }}
         style={{ display: "inline-block", color: "rgba(250,248,244,0.82)", fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.15s" }}
         onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.80)"}
         onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.45)"}
