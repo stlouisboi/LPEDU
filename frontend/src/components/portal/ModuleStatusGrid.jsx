@@ -168,6 +168,86 @@ export default function ModuleStatusGrid({ hasCohortAccess, gateStatuses, isModu
           .module-status-grid-inner { grid-template-columns: 1fr !important; }
         }
       ` }} />
+
+      {/* ── Next Action Prompt ── */}
+      {(() => {
+        if (registryIssued) {
+          return (
+            <div
+              data-testid="next-action-vrf-complete"
+              style={{
+                marginTop: "1rem",
+                padding: "0.875rem 1.25rem",
+                background: "rgba(34,197,94,0.04)",
+                border: "1px solid rgba(34,197,94,0.18)",
+                borderLeft: "3px solid #22c55e",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 6px rgba(34,197,94,0.55)", flexShrink: 0, display: "block" }} />
+              <p style={{ fontFamily: mono, fontSize: "0.571rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "#22c55e", margin: 0 }}>
+                PROGRAM COMPLETE — VERIFIED REGISTRY ID ISSUED
+              </p>
+            </div>
+          );
+        }
+
+        const nextModule = hasCohortAccess
+          ? CURRICULUM.find((mod) => {
+              if (mod.id === "ground-0") return false;
+              const locked = isModuleLocked(mod);
+              const s = getModuleStatus(mod.id);
+              return !locked && s !== "approved" && s !== "complete" && s !== "conditional";
+            })
+          : null;
+
+        if (!nextModule) return null;
+
+        const status = getModuleStatus(nextModule.id);
+        const isPending = status === "pending_review";
+
+        return (
+          <button
+            data-testid="next-action-prompt"
+            onClick={() => onSelect(nextModule.id)}
+            style={{
+              marginTop: "1rem",
+              width: "100%",
+              padding: "0.875rem 1.25rem",
+              background: "rgba(200,169,110,0.04)",
+              border: "1px solid rgba(200,169,110,0.20)",
+              borderLeft: "3px solid #C8A96E",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: "1rem",
+              cursor: "pointer",
+              textAlign: "left",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(200,169,110,0.08)")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(200,169,110,0.04)")}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              <p style={{ fontFamily: mono, fontSize: "0.476rem", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(200,169,110,0.55)", margin: 0, flexShrink: 0 }}>
+                {isPending ? "UNDER REVIEW" : "NEXT"}
+              </p>
+              <div style={{ width: 1, height: 20, background: "rgba(200,169,110,0.18)", flexShrink: 0 }} />
+              <div>
+                <p style={{ fontFamily: mono, fontSize: "0.524rem", fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(200,169,110,0.60)", margin: "0 0 2px" }}>
+                  {nextModule.code}
+                </p>
+                <p style={{ fontFamily: inter, fontSize: "0.857rem", fontWeight: 600, color: "rgba(255,255,255,0.85)", margin: 0 }}>
+                  {nextModule.label}
+                </p>
+              </div>
+            </div>
+            <span style={{ fontFamily: mono, fontSize: "0.714rem", color: "#C8A96E", flexShrink: 0 }}>→</span>
+          </button>
+        );
+      })()}
     </div>
   );
 }
