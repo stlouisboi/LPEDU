@@ -3,7 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
-import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import { PrimaryCtaBlock, SecondaryCtaBlock, CheckpointCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 import PreOpChecklistGate from "../../components/PreOpChecklistGate";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
 
@@ -185,6 +185,7 @@ export default function HowToStartTruckingPost() {
 
         <PrimaryCtaBlock />
         <SecondaryCtaBlock />
+        <CheckpointCtaBlock />
         <RegulatoryDisclaimer />
       </div>
       <SiteFooter />
