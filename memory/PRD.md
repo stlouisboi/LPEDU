@@ -525,6 +525,34 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 144: LP-FLOW-001 Canonical Enrollment Flow Corrections (June 2026)
+Per the LP-FLOW-001 v1.0 canonical flow document, the following corrections were applied:
+
+**CORRECTION 1 — Gate `/admission` behind G0 completion:**
+- `AdmissionPage.jsx`: On mount, checks `localStorage.getItem('lp_g0_admission_gate')`. If not `'1'`, renders a gate message ("Ground 0 completion is required before this step") with `data-testid=gate-go-to-portal` linking to `/portal`. If cleared, shows the form.
+- `CompleteView.jsx` (G0 complete CTA): Changed link `/reach-diagnostic` → `/admission`, sets `lp_g0_admission_gate='1'` in localStorage on click.
+- `Lesson07View.jsx` ("JOIN THE NEXT INSTALL GROUP" → "SUBMIT ADMISSION REQUEST →"): Changed `/reach-diagnostic` → `/admission`, sets `lp_g0_admission_gate='1'` on click.
+- `ReachRedirectView.jsx` (secondary link): Changed `/reach-diagnostic` → `/admission`, sets gate on click.
+
+**CORRECTION 2 — Remove Stripe from post-admission-form confirmation:**
+- `AdmissionPage.jsx` success state: Removed Stripe $2,500 button, `handleProceedToPayment` function, and `checkoutLoading` state entirely. Replaced with exact confirmation copy: "Vince will review your submission and be in touch within 24–48 hours. The briefing is a private session — not a sales call." + contact details (vince@launchpathedu.com · (336) 329-8899).
+
+**Routing fixes:**
+- `SiteHeader.jsx`: "Standard" nav link `/ground-0-briefing` → `/program`; "Request Admission" (desktop + mobile) → `/reach-diagnostic`
+- `SiteFooter.jsx`: "Request Admission →" (footer-admission-cta) → `/reach-diagnostic`
+- `ResultCTAs.jsx`: GO result: removed "Proceed to 90-Day Standard" button; single CTA "Access Ground 0 — Free →" → `/ground-0-briefing`
+
+**Copy fixes (no LP-OS language):**
+- `REACHTeaserSection.jsx`: GO desc: "We move directly into LP-OS installation." → "Your foundation is structurally sound. Your operation qualifies for LP-COH-002 review. The next step is Ground 0."
+- `reachData.js`: GO bullets/cta/sub updated to match LP-FLOW-001 Step 2 exact copy
+- `REACHAssessmentPage.jsx`: GO bridge CTA copy updated; closing statement LP-OS language removed
+
+**Audit Window Calculator — moved to /tools:**
+- `REACHAssessmentPage.jsx`: Removed `<MCAuditWindow />` from the intro section (was competing with primary CTA)
+- `ToolsIndexPage.jsx`: Added MCAuditWindow as LP-TOOL-005 at the bottom of `/tools`
+
+- Testing: 13/13 PASS (iteration_136.json)
+
 ### Phase 143: Portal Option B — Full Premium Dashboard Redesign (June 2026)
 - **PortalHeader.jsx** (redesigned previous session): Classification strip (LP-PORTAL-1.0 · LAUNCHPATH STANDARD PROGRAM · COHORT OPERATOR PORTAL) at very top in `#030c18`. Main header row with "LPOS v1.0 / Operator Portal" identity, VRF ISSUED status chip, audit window in classification strip, operator name + sign-out button. `auditDaysRemaining` and `registryIssued` props now wired from PortalPage.
 - **PortalSidebar.jsx** (updated): Added `auditWindow` prop. New `data-testid=sidebar-program-status` block at the very TOP showing: "PROGRAM STATUS" mono label, X/10 fraction, 3px gold progress bar, "VRF PENDING/ISSUED" status, and "AUDIT: Xd" chip when audit window is active. Removed old bottom progress summary. Sidebar section label changed from "YOUR IMPLEMENTATION JOURNEY" → "INSTALLATION SEQUENCE" (eliminates coaching language per voice spec).

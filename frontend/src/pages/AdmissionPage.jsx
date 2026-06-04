@@ -27,7 +27,6 @@ export default function AdmissionPage() {
     lane: "",
     message: "",
   });
-  const [admissionId, setAdmissionId] = useState(null);
   const [state, setState] = useState("idle"); // idle | loading | success | error
   const [seats, setSeats] = useState(null);
   const [gateCleared, setGateCleared] = useState(false);
@@ -64,28 +63,8 @@ export default function AdmissionPage() {
       });
       if (!resp.ok) throw new Error("Failed");
       const data = await resp.json();
-      setAdmissionId(data.admission_id || null);
       setState("success");
     } catch {
-      setState("error");
-    }
-  };
-
-  const handleProceedToPayment = async () => {
-    if (!admissionId) return;
-    setCheckoutLoading(true);
-    try {
-      const origin = window.location.origin;
-      const resp = await fetch(`${API}/api/create-admission-checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ admission_id: admissionId, origin_url: origin }),
-      });
-      if (!resp.ok) throw new Error("Checkout failed");
-      const data = await resp.json();
-      window.location.href = data.checkout_url;
-    } catch {
-      setCheckoutLoading(false);
       setState("error");
     }
   };
