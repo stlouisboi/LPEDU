@@ -1,3 +1,5 @@
+import { Link } from '../../compat/Link';
+
 const mono = { fontFamily: "'JetBrains Mono','IBM Plex Mono',monospace" };
 const serif = { fontFamily: "'Newsreader','Playfair Display',serif" };
 const sans = { fontFamily: "'Inter',sans-serif" };
@@ -71,12 +73,9 @@ export default function HowItWorksSection() {
                   {step.body}
                 </p>
                 {step.cta && (
-                  <a href={step.cta.href} style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', textDecoration: 'none', fontWeight: 700, display: 'inline-block', borderBottom: '1px solid rgba(197,160,89,0.30)', paddingBottom: 2, transition: 'color 0.2s' }}
-                    onMouseOver={(e) => e.currentTarget.style.color = '#d4b87a'}
-                    onMouseOut={(e) => e.currentTarget.style.color = '#C8A96E'}
-                  >
+                  <Link to={step.cta.href} style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#C8A96E', textDecoration: 'none', fontWeight: 700, display: 'inline-block', borderBottom: '1px solid rgba(197,160,89,0.30)', paddingBottom: 2 }}>
                     {step.cta.label}
-                  </a>
+                  </Link>
                 )}
               </div>
             );
@@ -121,9 +120,9 @@ export default function HowItWorksSection() {
 
                     {/* Label */}
                     {node.href ? (
-                      <a href={node.href} style={{ ...serif, fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none', display: 'block', lineHeight: 1.3, marginBottom: '0.5rem' }}>
+                      <Link to={node.href} style={{ ...serif, fontSize: '0.875rem', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none', display: 'block', lineHeight: 1.3, marginBottom: '0.5rem' }}>
                         {node.label}
-                      </a>
+                      </Link>
                     ) : (
                       <p style={{ ...serif, fontSize: '0.875rem', fontWeight: 700, color: 'rgba(255,255,255,0.45)', lineHeight: 1.3, marginBottom: '0.5rem', margin: '0 0 0.5rem' }}>
                         {node.label}
@@ -171,13 +170,12 @@ export default function HowItWorksSection() {
           <p style={{ ...sans, fontSize: '0.924rem', color: 'rgba(28,43,58,0.60)', lineHeight: 1.65, maxWidth: 480 }}>
             Start with REACH. It takes 5 minutes and costs nothing. Your result determines the next step.
           </p>
-          <a data-testid="how-it-works-reach-cta" href="/reach-diagnostic"
-            style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: '#1C2B3A', color: '#C8A96E', padding: '0.875rem 1.75rem', textDecoration: 'none', fontWeight: 700, border: '1px solid rgba(200,169,110,0.40)', whiteSpace: 'nowrap', flexShrink: 0, transition: 'background 0.2s, color 0.2s' }}
-            onMouseOver={(e) => { e.currentTarget.style.background = '#C8A96E'; e.currentTarget.style.color = '#0D1B2A'; }}
-            onMouseOut={(e) => { e.currentTarget.style.background = '#1C2B3A'; e.currentTarget.style.color = '#C8A96E'; }}
+          <Link
+            data-testid="how-it-works-reach-cta" to="/reach-diagnostic"
+            style={{ ...mono, fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', background: '#1C2B3A', color: '#C8A96E', padding: '0.875rem 1.75rem', textDecoration: 'none', fontWeight: 700, border: '1px solid rgba(200,169,110,0.40)', whiteSpace: 'nowrap', flexShrink: 0 }}
           >
             Run REACH Diagnostic — Free →
-          </a>
+          </Link>
         </div>
 
       </div>

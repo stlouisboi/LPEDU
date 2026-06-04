@@ -790,11 +790,11 @@ export default function REACHAssessmentPage() {
                       : "Your assessment indicates areas that should be strengthened before implementation begins. Ground 0 provides the preparation framework."}
                   </p>
                   <div style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}>
-                    <a href="/16-deadly-sins" data-testid="cta-wait-sins" className="lp-scan-btn"
+                    <Link to="/16-deadly-sins" data-testid="cta-wait-sins" className="lp-scan-btn"
                       style={{ display: "inline-block", background: "#F59E0B", color: "#FAF8F4", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", transition: "background 0.2s" }}
                       onMouseEnter={e => e.currentTarget.style.background = "#f7b731"}
                       onMouseLeave={e => e.currentTarget.style.background = "#F59E0B"}
-                    >Review the 16 Deadly Sins →</a>
+                    >Review the 16 Deadly Sins →</Link>
                   </div>
                 </div>
               );
@@ -819,11 +819,11 @@ export default function REACHAssessmentPage() {
                 }}>
                   This result protects you from a preventable financial loss. The conditions that caused it are resolvable. The Knowledge Center contains the resources to address each one. Return when your score changes.
                 </p>
-                <a href="/knowledge-center" data-testid="cta-nogo-knowledge"
+                <Link to="/knowledge-center" data-testid="cta-nogo-knowledge"
                   style={{ display: "inline-block", background: "transparent", color: "rgba(255,255,255,0.70)", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.857rem", letterSpacing: "0.09em", textTransform: "uppercase", textDecoration: "none", padding: "0.875rem 1.5rem", border: "1px solid rgba(255,255,255,0.22)", transition: "all 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.06)"}
                   onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                >Explore the Knowledge Center →</a>
+                >Explore the Knowledge Center →</Link>
               </div>
             )}
 

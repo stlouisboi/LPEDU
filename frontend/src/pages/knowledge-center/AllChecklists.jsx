@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "../../compat/Link";
 import PreOpChecklistGate from "../../components/PreOpChecklistGate";
 
 // ── All 5 binder datasets ──────────────────────────────────────────────────
@@ -220,7 +221,7 @@ export default function AllChecklists() {
         <button onClick={() => window.print()} className="screen-btn">
           Click here if print dialog did not open
         </button>
-        <a href="/knowledge-center" className="screen-back">← Back to Knowledge Center</a>
+        <Link to="/knowledge-center" className="screen-back">← Back to Knowledge Center</Link>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
