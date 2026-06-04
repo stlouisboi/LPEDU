@@ -525,6 +525,11 @@ Testing: 100% (13/13 backend + all frontend flows) — iteration_90
 
 ---
 
+### Phase 140: LP-WEB-013 + LP-WEB-014 — Partners Expansion + Footer Restructure (June 2026)
+- **LP-WEB-014 Footer Restructure** (`SiteFooter.jsx`): Rebuilt from 3-col generic → 3-layer institutional footer. Layer 1: brand row (logo + "Accuracy Over Hype. Systems Over Shortcuts." + REQUEST ADMISSION CTA). Layer 2: 5-column nav grid (PLATFORM / RESOURCES / STANDARDS / COMPANY / AUTHORITY) with column header labels. COMPANY column has "→ Partners" in gold bold to visually stand out. Layer 3: legal row (Privacy Policy, Terms of Service | © LaunchPath Transportation EDU LLC | Verify, phone, email) + full disclaimer with ecfr.gov reference. Mobile: stacks 3-col → 2-col → 1-col. `PartnersPage.jsx` switched from `FooterSection` → `SiteFooter`.
+- **LP-WEB-013 Partners Page Expansion** (`PartnersPage.jsx`): Expanded from 3 → 6 partner persona cards (added LP-PARTNER-BOC — Process Agents & BOC-3 Filers, LP-PARTNER-CDL — CDL Schools & Driver Training, LP-PARTNER-ASC — Industry Associations & Carrier Networks). Added Partner Ecosystem Diagram (SVG hub-spoke: 6 outer nodes → LaunchPath Standard → "VERIFIED CARRIER — AUDIT READY" output). Added Video Block placeholder (LP-VID-002, IN PRODUCTION badge, time-coded content outline). Added Referral Incentive Block ("What Partners Receive": 4 items — acknowledgment, co-branded materials, completion notification, commission TBD). Updated contact form role dropdown: 3 new options (Process Agent/BOC-3 Filer, CDL School/Driver Training, Industry Association/Carrier Network). Section heading updated: "Three industries" → "Six networks. One operational exposure."
+- Testing: 16/16 PASS (iteration_132.json)
+
 ### Phase 139: Carrier Files — 3 Case Studies Published (June 2026)
 - **3 composite case studies** written in Calm Foreman voice and rendered as institutional dossier cards in `CarrierFilesPage.jsx`:
   - **LP-CF-001** (Southeast, owner-operator, dry van): DQ file gaps — §391.51 incomplete employment verification + no annual MVR review. SATISFACTORY. 1 recordable. Carrier note: "I thought a folder was enough."
