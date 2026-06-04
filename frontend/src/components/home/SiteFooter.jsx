@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '../../compat/Link';
 import KCArticleReachCTA from '../KCArticleReachCTA';
@@ -15,10 +15,12 @@ const NAV = [
 ];
 
 export default function SiteFooter() {
-  const router = useRouter();
-  const path = router?.pathname ?? '';
-  // Show KC REACH CTA on all KC article pages (not the index)
-  const isKCArticle = path.startsWith('/knowledge-center/') && path !== '/knowledge-center';
+  const [isKCArticle, setIsKCArticle] = useState(false);
+
+  useEffect(() => {
+    const p = window.location.pathname;
+    setIsKCArticle(p.startsWith('/knowledge-center/') && p !== '/knowledge-center');
+  }, []);
 
   return (
     <>
