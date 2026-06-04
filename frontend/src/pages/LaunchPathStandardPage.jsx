@@ -212,7 +212,7 @@ export default function LaunchPathStandardPage() {
                 A Verified Registry ID issued when all six domains pass final review.
               </p>
               <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-                <Link to="/admission" data-testid="hero-request-admission-btn" className="lp-scan-btn" style={{ display: "inline-block", background: gold, color: navy, fontFamily: body, fontWeight: 700, fontSize: ".975rem", letterSpacing: ".08em", textTransform: "uppercase", padding: "1.125rem 2.75rem", textDecoration: "none", transition: "background 0.2s" }}
+                <Link to="/reach-diagnostic" data-testid="hero-request-admission-btn" className="lp-scan-btn" style={{ display: "inline-block", background: gold, color: navy, fontFamily: body, fontWeight: 700, fontSize: ".975rem", letterSpacing: ".08em", textTransform: "uppercase", padding: "1.125rem 2.75rem", textDecoration: "none", transition: "background 0.2s" }}
                   onMouseEnter={e => e.currentTarget.style.background = "#D4B87A"}
                   onMouseLeave={e => e.currentTarget.style.background = gold}>
                   Request Admission →
@@ -577,7 +577,7 @@ export default function LaunchPathStandardPage() {
           </p>
 
           <Link
-            to="/admission"
+            to="/reach-diagnostic"
             data-testid="request-admission-cta"
             className="lp-scan-btn"
             style={{ display: "inline-block", background: gold, color: navy, fontFamily: body, fontWeight: 700, fontSize: "0.975rem", letterSpacing: "0.08em", textTransform: "uppercase", padding: "1.125rem 3rem", textDecoration: "none", transition: "background 0.2s" }}

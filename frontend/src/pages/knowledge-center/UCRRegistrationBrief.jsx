@@ -10,7 +10,7 @@ const DATA = {
   cta: {
     context: "If you've been through authority issues, you already know what the system costs when it's not installed correctly. Ground 0 is where the installation starts — six lessons, free.",
     primary: { text: "Start Ground 0 →", to: "/reach-diagnostic" },
-    secondary: { text: "Request an Operator Readiness Call →", to: "/admission" },
+    secondary: { text: "Request an Operator Readiness Call →", to: "/reach-diagnostic" },
   },
   executiveSummary: {
     intent: "This is what an owner must understand before assuming that authority reinstatement is simply a matter of filing paperwork and waiting.",

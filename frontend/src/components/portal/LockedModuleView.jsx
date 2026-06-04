@@ -59,7 +59,7 @@ export default function LockedModuleView({ moduleInfo, type, onCheckout, payment
             Cohort module — requires LaunchPath Standard enrollment to unlock.
           </p>
         </div>
-        <a href="/admission" style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.5rem 1.125rem", textDecoration: "none", whiteSpace: "nowrap" }}>
+        <a href="/reach-diagnostic" style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter',sans-serif", fontWeight: 700, fontSize: "0.762rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "0.5rem 1.125rem", textDecoration: "none", whiteSpace: "nowrap" }}>
           Request Admission →
         </a>
       </div>

@@ -138,7 +138,7 @@ export default function StandardPage() {
 
           <div style={{ maxWidth: 420, margin: "0 auto" }}>
             <Link
-              to="/admission"
+              to="/reach-diagnostic"
               data-testid="hero-request-admission-btn"
               style={{ display: "block", width: "100%", boxSizing: "border-box", fontFamily: BODY, fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, padding: "1rem 2rem", textDecoration: "none", textAlign: "center", borderRadius: 4 }}
             >
@@ -351,7 +351,7 @@ export default function StandardPage() {
                 ))}
 
                 <Link
-                  to="/admission"
+                  to="/reach-diagnostic"
                   data-testid="single-auth-cta"
                   style={{ display: "block", textAlign: "center", marginTop: "1.75rem", fontFamily: BODY, fontWeight: 700, fontSize: "0.875rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, padding: "1rem", textDecoration: "none", borderRadius: 4 }}
                 >
@@ -393,7 +393,7 @@ export default function StandardPage() {
               </div>
 
               <Link
-                to="/admission"
+                to="/reach-diagnostic"
                 data-testid="phased-auth-cta"
                 style={{ display: "block", textAlign: "center", fontFamily: BODY, fontWeight: 700, fontSize: "0.875rem", letterSpacing: "0.08em", textTransform: "uppercase", background: "transparent", color: GOLD, border: `1px solid ${GOLD}`, padding: "1rem", textDecoration: "none", borderRadius: 4 }}
               >
@@ -433,7 +433,7 @@ export default function StandardPage() {
           </p>
           <div style={{ maxWidth: 400, margin: "0 auto" }}>
             <Link
-              to="/admission"
+              to="/reach-diagnostic"
               data-testid="footer-request-admission-btn"
               style={{ display: "block", fontFamily: BODY, fontWeight: 700, fontSize: "0.9rem", letterSpacing: "0.08em", textTransform: "uppercase", background: GOLD, color: NAVY, padding: "1.125rem 2rem", textDecoration: "none", textAlign: "center", borderRadius: 4 }}
             >

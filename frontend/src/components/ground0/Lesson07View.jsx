@@ -186,7 +186,7 @@ export default function Lesson07View({ onViewCompletion }) {
       {/* Primary CTA */}
       <div style={{ marginBottom: "2rem" }}>
         <a
-          href="/admission"
+          href="/reach-diagnostic"
           data-testid="g0-lesson07-cta"
           style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "#d4900a", color: "#000F1F", fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: "0.97rem", letterSpacing: "0.06em", textTransform: "uppercase", padding: "1.25rem 1.75rem", textDecoration: "none", transition: "background 0.2s", width: "100%", boxSizing: "border-box", minHeight: 56 }}
           onMouseEnter={e => e.currentTarget.style.background = "#e8a520"}

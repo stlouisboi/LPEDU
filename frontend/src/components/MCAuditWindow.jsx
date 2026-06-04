@@ -167,7 +167,7 @@ export default function MCAuditWindow({ compact = false }) {
             /* PRE-AUDIT or AUDIT ELIGIBLE — urgent path to /admission */
             <div>
               <Link
-                to="/admission"
+                to="/reach-diagnostic"
                 data-testid="audit-window-cta"
                 style={{
                   display: "block", textAlign: "center",

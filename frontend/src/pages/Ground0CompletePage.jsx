@@ -41,7 +41,7 @@ const PATHS = [
     ],
     best_for: "Operators ready to install the full system with guided implementation.",
     cta: "Request Admission",
-    href: "/admission",
+    href: "/reach-diagnostic",
     external: false,
     priceLabel: "Admission-based",
     borderTop: "#d4900a",

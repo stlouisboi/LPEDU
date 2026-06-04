@@ -616,7 +616,7 @@ export default function PortalPage() {
               {/* CTAs */}
               <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
                 <a
-                  href="/admission"
+                  href="/reach-diagnostic"
                   data-testid="g0-banner-admission-cta"
                   style={{
                     display: "inline-flex",

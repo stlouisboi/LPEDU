@@ -160,7 +160,7 @@ export default function RecoveryPathBlock() {
                 Your rating is conditional. You have a remediation window. The Standard still applies — the starting point is different and the urgency is higher. Most carriers who cure a conditional rating do it by installing the same documentation infrastructure the Standard builds. The difference is you're doing it under pressure.
               </p>
               <Link
-                to="/admission"
+                to="/reach-diagnostic"
                 data-testid="recovery-path-cta"
                 style={{
                   display: "inline-block",

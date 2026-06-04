@@ -319,7 +319,7 @@ function UpsellCard({ upsell, purchasedSku }) {
       {isCohort ? (
         <div>
           <Link
-            to="/admission"
+            to="/reach-diagnostic"
             data-testid="upsell-cta-btn"
             style={{
               display: "block", textAlign: "center",

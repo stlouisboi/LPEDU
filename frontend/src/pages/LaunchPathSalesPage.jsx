@@ -141,7 +141,7 @@ export default function LaunchPathSalesPage() {
     }
   };
 
-  const handlePhased  = () => { window.location.href = "/admission"; };
+  const handlePhased  = () => { window.location.href = "/reach-diagnostic"; };
   const handleReach   = () => { window.location.href = "/reach-diagnostic"; };
   const handleBundle  = () => { window.location.href = "/bundle"; };
 

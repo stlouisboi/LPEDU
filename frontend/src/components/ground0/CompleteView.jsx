@@ -97,7 +97,7 @@ export default function CompleteView({ onRestart, onViewLesson07 }) {
         {/* Single continuation CTA */}
         <div style={{ padding: "1.75rem 2rem" }}>
           <a
-            href="/admission"
+            href="/reach-diagnostic"
             data-testid="g0-completion-cta"
             style={{
               display: "flex", alignItems: "center", justifyContent: "space-between",

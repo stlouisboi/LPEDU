@@ -30,7 +30,7 @@ export default function ReachRedirectView() {
         </a>
       </div>
       <a
-        href="/admission"
+        href="/reach-diagnostic"
         data-testid="g0-admission-secondary"
         style={{ display: "inline-block", color: "rgba(250,248,244,0.82)", fontFamily: "'Inter', sans-serif", fontSize: "0.857rem", letterSpacing: "0.06em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.15s" }}
         onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,0.80)"}
