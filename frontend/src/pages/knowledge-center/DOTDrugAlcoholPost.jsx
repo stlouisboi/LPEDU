@@ -3,7 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
-import { PrimaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import { PrimaryCtaBlock, CheckpointCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
@@ -152,6 +152,7 @@ export default function DOTDrugAlcoholPost() {
         </p>
 
         <PrimaryCtaBlock />
+        <CheckpointCtaBlock />
         <RegulatoryDisclaimer />
       </div>
       <SiteFooter />

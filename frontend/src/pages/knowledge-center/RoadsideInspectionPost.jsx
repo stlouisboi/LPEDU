@@ -3,7 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
-import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import { PrimaryCtaBlock, SecondaryCtaBlock, CheckpointCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 import ReadingProgressBar from "../../components/ReadingProgressBar";
 
 const gold = "#d4900a";
@@ -215,6 +215,7 @@ export default function RoadsideInspectionPost() {
         </p>
 
         <PrimaryCtaBlock />
+        <CheckpointCtaBlock />
         <RegulatoryDisclaimer />
       </div>
       <SiteFooter />

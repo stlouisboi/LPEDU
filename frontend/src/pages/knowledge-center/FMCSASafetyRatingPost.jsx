@@ -3,7 +3,7 @@ import ShareButton from "../../components/ShareButton";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
-import { PrimaryCtaBlock, SecondaryCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
+import { PrimaryCtaBlock, SecondaryCtaBlock, CheckpointCtaBlock, RegulatoryDisclaimer } from "../../components/KCClusterCtaBlocks";
 
 const navy = "#000F1F";
 const gold = "#d4900a";
@@ -140,6 +140,7 @@ export default function FMCSASafetyRatingPost() {
 
         <PrimaryCtaBlock />
         <SecondaryCtaBlock />
+        <CheckpointCtaBlock />
         <RegulatoryDisclaimer />
       </div>
       <SiteFooter />
