@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Link } from '../../compat/Link';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const NAV_PRIMARY = [
   { label: 'Standard',    href: '/ground-0-briefing' },
@@ -26,8 +26,7 @@ const BG   = '#FAF8F4';
 const BORDER = 'rgba(28,43,58,0.10)';
 
 export default function SiteHeader({ activePath = '/' }) {
-  const [open, setOpen]         = useState(false);
-  const [toolsOpen, setToolsOpen] = useState(false);
+  const [open, setOpen]   = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -56,51 +55,6 @@ export default function SiteHeader({ activePath = '/' }) {
         }
         .lp-nav-link:hover { color: ${NAVY}; border-color: ${GOLD}; }
         .lp-nav-link.active { color: ${NAVY}; border-color: ${NAVY}; }
-        .lp-tools-trigger {
-          font-family: ${MONO};
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: rgba(28,43,58,0.52);
-          background: none;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          padding-bottom: 3px;
-          border-bottom: 2px solid transparent;
-          transition: color 0.18s, border-color 0.18s;
-        }
-        .lp-tools-trigger:hover { color: ${NAVY}; border-bottom-color: ${GOLD}; }
-        .lp-tools-open { color: ${NAVY}; border-bottom-color: ${NAVY}; }
-        .lp-dropdown {
-          position: absolute;
-          top: calc(100% + 10px);
-          left: 50%;
-          transform: translateX(-50%);
-          background: ${BG};
-          border: 1px solid ${BORDER};
-          border-top: 2px solid ${NAVY};
-          box-shadow: 0 8px 32px rgba(28,43,58,0.12);
-          min-width: 200px;
-          z-index: 200;
-          padding: 0.375rem 0;
-        }
-        .lp-dropdown-item {
-          display: block;
-          font-family: ${MONO};
-          font-size: 10px;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: rgba(28,43,58,0.6);
-          text-decoration: none;
-          padding: 0.625rem 1.25rem;
-          transition: background 0.12s, color 0.12s;
-        }
-        .lp-dropdown-item:hover { background: rgba(200,169,110,0.08); color: ${NAVY}; }
         .lp-btn-outline {
           font-family: ${MONO};
           font-size: 10px;
@@ -174,35 +128,6 @@ export default function SiteHeader({ activePath = '/' }) {
                 {n.label}
               </Link>
             ))}
-
-            {/* Tools dropdown */}
-            <div style={{ position: 'relative' }} onMouseLeave={() => setToolsOpen(false)}>
-              <button
-                className={`lp-tools-trigger${toolsOpen ? ' lp-tools-open' : ''}`}
-                onMouseEnter={() => setToolsOpen(true)}
-                onClick={() => setToolsOpen(v => !v)}
-                aria-haspopup="true"
-                aria-expanded={toolsOpen}
-              >
-                Tools
-                <ChevronDown size={11} style={{ opacity: 0.6, transform: toolsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
-              </button>
-              {toolsOpen && (
-                <div className="lp-dropdown" role="menu">
-                  {NAV_TOOLS.map(t => (
-                    <Link
-                      key={t.href}
-                      to={t.href}
-                      className="lp-dropdown-item"
-                      onClick={() => setToolsOpen(false)}
-                      role="menuitem"
-                    >
-                      {t.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
           </nav>
 
           {/* Right separator */}
