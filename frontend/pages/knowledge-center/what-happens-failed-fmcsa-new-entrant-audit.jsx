@@ -23,8 +23,8 @@ export default function Page() {
           "headline": "What Actually Happens When You Fail an FMCSA New Entrant Audit",
           "description": "A Conditional rating from the FMCSA New Entrant Audit triggers insurance and cash-flow consequences most carriers don't see coming. Here's what actually happens \u2014 and how carriers recover.",
           "url": "https://launchpathedu.com/knowledge-center/what-happens-failed-fmcsa-new-entrant-audit",
-          "datePublished": "2025-03-15",
-          "dateModified": "2026-04-01",
+          "datePublished": "2026-01-26",
+          "dateModified": "2026-01-26",
           "author": {
                     "@type": "Person",
                     "name": "Vince Lawrence",

@@ -10,6 +10,7 @@ const HowItWorksSection     = dynamic(() => import("../components/sales/sections
 const WhatIsIncludedSection = dynamic(() => import("../components/sales/sections/WhatIsIncludedSection"), { ssr: true });
 const WhoIsItForSection     = dynamic(() => import("../components/sales/sections/WhoIsItForSection"),     { ssr: true });
 const PricingSection        = dynamic(() => import("../components/sales/sections/PricingSection"),        { ssr: true });
+const VerifiedOutcomesSection = dynamic(() => import("../components/sales/sections/VerifiedOutcomesSection"), { ssr: true });
 const AuthorizationPathsSection = dynamic(() => import("../components/sales/sections/AuthorizationPathsSection"), { ssr: true });
 const FAQSection            = dynamic(() => import("../components/sales/sections/FAQSection"),            { ssr: true });
 const FinalCTASection       = dynamic(() => import("../components/sales/sections/FinalCTASection"),       { ssr: true });
@@ -180,6 +181,7 @@ export default function LaunchPathSalesPage() {
       <WhatIsIncludedSection />
       <WhoIsItForSection handleReach={handleReach} />
       <PricingSection scrollToAdmission={scrollToAdmission} handleBundle={handleBundle} />
+      <VerifiedOutcomesSection />
       <AuthorizationPathsSection admissionRef={admissionRef} handleAuthorize={handleAuthorize} handlePhased={handlePhased} checkoutLoading={checkoutLoading} />
       <FAQSection />
       <FinalCTASection handleAuthorize={handleAuthorize} checkoutLoading={checkoutLoading} handlePhased={handlePhased} handleBundle={handleBundle} />

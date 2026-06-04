@@ -1,5 +1,6 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
+import { ArticleByline } from "../../components/ArticleByline";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
@@ -67,6 +68,7 @@ export default function CorrectiveActionPlanPost() {
             <ShareButton />
           </div>
           </div>
+          <ArticleByline date="March 9, 2026" />
         </div>
       </div>
 

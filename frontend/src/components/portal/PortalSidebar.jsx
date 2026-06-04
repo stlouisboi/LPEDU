@@ -149,14 +149,36 @@ export default function PortalSidebar({ selectedId, hasCohortAccess, gateStatuse
           const s = gateStatuses[m.id]?.status;
           return s === "approved" || s === "complete";
         }).length;
+        const total = 10;
+        const pct = Math.round((completedCount / total) * 100);
         const registryIssued = isAllCoreDone();
         return (
-          <div data-testid="journey-progress-summary" style={{ margin: "1.25rem 1rem 0", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.1rem", paddingBottom: "0.75rem", paddingLeft: "0.5rem" }}>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.75)", marginBottom: "0.35rem" }}>
-              Progress: <strong style={{ color: "rgba(255,255,255,0.65)" }}>{completedCount} of 10</strong> modules
-            </p>
-            <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: registryIssued ? "#22c55e" : "rgba(255,255,255,0.28)" }}>
-              Verified Registry ID: {registryIssued ? <strong>Issued ✓</strong> : "Pending"}
+          <div data-testid="journey-progress-summary" style={{ margin: "1.25rem 1rem 0.25rem", borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "1.1rem" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.4rem" }}>
+              <p style={{ fontFamily: "'Inter',sans-serif", fontSize: "0.714rem", color: "rgba(250,248,244,0.60)", letterSpacing: "0.06em" }}>
+                PROGRESS
+              </p>
+              <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.714rem", color: "rgba(200,169,110,0.85)", fontWeight: 700 }}>
+                {completedCount}/{total}
+              </p>
+            </div>
+            {/* Progress bar */}
+            <div style={{ height: 3, background: "rgba(255,255,255,0.08)", marginBottom: "0.625rem", position: "relative" }}>
+              <div style={{
+                position: "absolute", left: 0, top: 0, height: "100%",
+                width: `${pct}%`,
+                background: registryIssued ? "#22c55e" : "rgba(200,169,110,0.75)",
+                transition: "width 0.4s ease",
+              }} />
+            </div>
+            <p style={{
+              fontFamily: "'Inter',sans-serif",
+              fontSize: "0.700rem",
+              color: registryIssued ? "#22c55e" : "rgba(255,255,255,0.32)",
+              letterSpacing: "0.06em",
+              paddingBottom: "0.75rem",
+            }}>
+              {registryIssued ? "Verified Registry ID — Issued" : `Verified Registry ID — Pending`}
             </p>
           </div>
         );

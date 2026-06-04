@@ -1,5 +1,6 @@
 import { Link } from '../../compat/Link';
 import ShareButton from "../../components/ShareButton";
+import { ArticleByline } from "../../components/ArticleByline";
 import AnnouncementBar from "../../components/home/AnnouncementBar";
 import SiteHeader from "../../components/home/SiteHeader";
 import SiteFooter from "../../components/home/SiteFooter";
@@ -128,6 +129,7 @@ export default function RoadsideInspectionPost() {
               <ShareButton />
             </div>
           </div>
+          <ArticleByline date="February 2, 2026" />
         </div>
       </div>
 
