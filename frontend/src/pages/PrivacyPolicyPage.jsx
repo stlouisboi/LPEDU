@@ -91,7 +91,9 @@ export default function PrivacyPolicyPage() {
           <P>We use the following third-party services to operate the platform. Each has its own privacy policy governing their data practices:</P>
           <Li><strong style={{ color: T.white }}>Stripe</strong> — payment processing. Your payment data is governed by Stripe&apos;s Privacy Policy at stripe.com/privacy.</Li>
           <Li><strong style={{ color: T.white }}>MailerSend</strong> — transactional email delivery (purchase receipts, download links).</Li>
+          <Li><strong style={{ color: T.white }}>MailerLite</strong> — email marketing and automation. Governed by MailerLite&apos;s Privacy Policy at mailerlite.com/legal/privacy-policy.</Li>
           <Li><strong style={{ color: T.white }}>Vimeo</strong> — video hosting for program lesson content.</Li>
+          <Li><strong style={{ color: T.white }}>RingCentral</strong> — SMS and voice communications. Your phone number may be used to send SMS messages per your opt-in consent. Governed by RingCentral&apos;s Privacy Policy at ringcentral.com/legal/privacy-notice.html.</Li>
           <P style={{ marginTop: 16 }}>We do not use Google Analytics, Facebook Pixel, or other advertising tracking tools on this site.</P>
         </Section>
 
