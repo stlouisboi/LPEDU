@@ -46,12 +46,15 @@ const labelStyle = {
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", mc: "", authorityAge: "", inquiryType: "", message: "",
+    name: "", email: "", phone: "", mc: "", authorityAge: "", inquiryType: "", message: "", smsConsent: false,
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handle = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm({ ...form, [name]: type === "checkbox" ? checked : value });
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -145,7 +148,7 @@ export default function ContactPage() {
                   Message received.
                 </h2>
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "1.064rem", color: "var(--text-muted)", lineHeight: 1.8, maxWidth: 360, margin: "0 auto" }}>
-                  Vince reviews every inquiry personally. You'll hear back within 2 business days
+                  Vince reviews every inquiry personally. You&apos;ll hear back within 2 business days
                   with either a readiness assessment or next steps.
                 </p>
               </div>
@@ -230,6 +233,36 @@ export default function ContactPage() {
                     onBlur={e => e.target.style.borderColor = "var(--border)"}
                     data-testid="contact-message"
                   />
+                </div>
+
+                {/* SMS Consent — required for 10DLC */}
+                <div
+                  data-testid="sms-consent-block"
+                  style={{
+                    background: "rgba(200,169,110,0.04)",
+                    border: "1px solid rgba(200,169,110,0.16)",
+                    padding: "1.25rem 1.25rem",
+                  }}
+                >
+                  <label style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", cursor: "pointer" }}>
+                    <input
+                      type="checkbox"
+                      name="smsConsent"
+                      checked={form.smsConsent}
+                      onChange={handle}
+                      data-testid="sms-consent-checkbox"
+                      style={{ marginTop: 3, flexShrink: 0, accentColor: "#C8A96E", width: 16, height: 16, cursor: "pointer" }}
+                    />
+                    <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.800rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.75 }}>
+                      By checking this box, I agree to receive SMS communications from LaunchPath Transportation EDU LLC regarding my inquiry, appointment confirmations, and program updates.{" "}
+                      <span style={{ color: "rgba(255,255,255,0.45)" }}>
+                        Messaging frequency may vary. Message and data rates may apply. Reply <strong style={{ color: "rgba(255,255,255,0.65)" }}>STOP</strong> to opt out at any time. Reply <strong style={{ color: "rgba(255,255,255,0.65)" }}>HELP</strong> for assistance or call (336) 329-8899.{" "}
+                      </span>
+                      <a href="/privacy-policy" style={{ color: "#C8A96E", textDecoration: "none" }}>Privacy Policy</a>
+                      {" · "}
+                      <a href="/terms-of-service" style={{ color: "#C8A96E", textDecoration: "none" }}>Terms of Service</a>
+                    </span>
+                  </label>
                 </div>
 
                 <button type="submit" disabled={loading}
