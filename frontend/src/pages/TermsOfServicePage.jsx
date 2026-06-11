@@ -62,7 +62,7 @@ export default function TermsOfServicePage() {
         </div>
 
         <Section title="Agreement">
-          <P>These Terms of Service ("Terms") govern your access to and use of the LaunchPath Transportation Education platform and all associated programs, content, and materials ("Services"), operated by LaunchPath Transportation Education LLC ("LaunchPath," "we," or "us").</P>
+          <P>These Terms of Service (&ldquo;Terms&rdquo;) govern your access to and use of the LaunchPath Transportation Education platform and all associated programs, content, and materials (&ldquo;Services&rdquo;), operated by LaunchPath Transportation Education LLC (&ldquo;LaunchPath,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;).</P>
           <P>By purchasing, enrolling in, or accessing any LaunchPath program or product, you agree to be bound by these Terms. If you do not agree, do not use the Services.</P>
         </Section>
 
@@ -106,16 +106,31 @@ export default function TermsOfServicePage() {
         </Section>
 
         <Section title="Disclaimer of Warranties">
-          <P>The Services are provided "as is" without warranty of any kind, express or implied. LaunchPath does not warrant that the Services will be uninterrupted, error-free, or that any specific compliance outcome will result from completing the program.</P>
+          <P>The Services are provided &ldquo;as is&rdquo; without warranty of any kind, express or implied. LaunchPath does not warrant that the Services will be uninterrupted, error-free, or that any specific compliance outcome will result from completing the program.</P>
           <P>Regulations referenced in program content are current as of the effective date stated on each document. Motor carrier regulations change. You are responsible for verifying current requirements through official FMCSA sources at fmcsa.dot.gov.</P>
         </Section>
 
         <Section title="Acceptable Use">
           <P>You agree not to:</P>
           <Li>Use the platform for any unlawful purpose or in violation of these Terms</Li>
-          <Li>Attempt to gain unauthorized access to any part of the platform or other users' accounts</Li>
+          <Li>Attempt to gain unauthorized access to any part of the platform or other users&apos; accounts</Li>
           <Li>Upload, transmit, or distribute any harmful, offensive, or infringing content</Li>
           <Li>Use automated tools to scrape, index, or reproduce platform content</Li>
+        </Section>
+
+        <Section title="SMS Terms">
+          <P>By providing your mobile phone number and opting in to receive text messages, you agree to receive SMS communications from LaunchPath Transportation EDU LLC and GigLine Safety &amp; Compliance related to the following:</P>
+          <Li>Appointment confirmations and scheduling reminders</Li>
+          <Li>Proposal and document status notifications</Li>
+          <Li>Program enrollment confirmations and access notifications</Li>
+          <Li>Cohort schedule and program milestone updates</Li>
+          <Li>Responses to inquiries and follow-up communications</Li>
+          <Li>Promotional messages about services and program availability</Li>
+          <P style={{ marginTop: 16 }}><strong style={{ color: T.white }}>Messaging frequency may vary.</strong></P>
+          <P><strong style={{ color: T.white }}>Message and data rates may apply.</strong></P>
+          <P><strong style={{ color: T.white }}>To opt out at any time, reply STOP.</strong> You will receive one confirmation and no further messages.</P>
+          <P><strong style={{ color: T.white }}>For assistance, reply HELP or call <a href="tel:+13363298899" style={{ color: T.goldText, textDecoration: "none" }}>(336) 329-8899</a>.</strong></P>
+          <P>For our full privacy practices, see our <a href="/privacy-policy" style={{ color: T.goldText, textDecoration: "none" }}>Privacy Policy</a>.</P>
         </Section>
 
         <Section title="Modifications to Terms">
@@ -130,6 +145,7 @@ export default function TermsOfServicePage() {
         <Section title="Contact">
           <P>Questions about these Terms:</P>
           <P>LaunchPath Transportation Education LLC<br />
+          Phone: <a href="tel:+13363298899" style={{ color: T.goldText, textDecoration: "none" }}>(336) 329-8899</a><br />
           Email: <a href="mailto:info@launchpathedu.com" style={{ color: T.goldText, textDecoration: "none" }}>info@launchpathedu.com</a></P>
         </Section>
 

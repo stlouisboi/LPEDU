@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
         </div>
 
         <Section title="Overview">
-          <P>LaunchPath Transportation Education LLC ("LaunchPath," "we," "us," or "our") operates the website at launchpathedu.com and delivers the LaunchPath Standard program. This Privacy Policy explains what information we collect, how we use it, and your rights with respect to it.</P>
+          <P>LaunchPath Transportation Education LLC (&ldquo;LaunchPath,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) operates the website at launchpathedu.com and delivers the LaunchPath Standard program. This Privacy Policy explains what information we collect, how we use it, and your rights with respect to it.</P>
           <P>By accessing our website or enrolling in any LaunchPath program, you agree to the practices described in this policy.</P>
         </Section>
 
@@ -89,7 +89,7 @@ export default function PrivacyPolicyPage() {
 
         <Section title="Third-Party Services">
           <P>We use the following third-party services to operate the platform. Each has its own privacy policy governing their data practices:</P>
-          <Li><strong style={{ color: T.white }}>Stripe</strong> — payment processing. Your payment data is governed by Stripe's Privacy Policy at stripe.com/privacy.</Li>
+          <Li><strong style={{ color: T.white }}>Stripe</strong> — payment processing. Your payment data is governed by Stripe&apos;s Privacy Policy at stripe.com/privacy.</Li>
           <Li><strong style={{ color: T.white }}>MailerSend</strong> — transactional email delivery (purchase receipts, download links).</Li>
           <Li><strong style={{ color: T.white }}>Vimeo</strong> — video hosting for program lesson content.</Li>
           <P style={{ marginTop: 16 }}>We do not use Google Analytics, Facebook Pixel, or other advertising tracking tools on this site.</P>
@@ -113,6 +113,15 @@ export default function PrivacyPolicyPage() {
           <P>We use session cookies strictly necessary to authenticate you in the portal and maintain your session. We do not use persistent tracking cookies or third-party advertising cookies.</P>
         </Section>
 
+        <Section title="SMS Communications">
+          <P>We use SMS (text messaging) to communicate with clients and program participants regarding appointment confirmations, service updates, program enrollment notifications, and general business communications for both GigLine Safety &amp; Compliance and LaunchPath Transportation EDU LLC.</P>
+          <P><strong style={{ color: T.white }}>Opt-in:</strong> By providing your mobile phone number through any form on our websites, you consent to receive SMS messages from us.</P>
+          <P><strong style={{ color: T.white }}>SMS consent is not shared with third parties or affiliates for any purpose.</strong></P>
+          <P><strong style={{ color: T.white }}>Opt-out:</strong> Reply STOP at any time to unsubscribe. You will receive one confirmation message and no further SMS messages will be sent.</P>
+          <P><strong style={{ color: T.white }}>Help:</strong> Reply HELP or call <a href="tel:+13363298899" style={{ color: T.goldText, textDecoration: "none" }}>(336) 329-8899</a>.</P>
+          <P><strong style={{ color: T.white }}>Message and data rates may apply.</strong> Messaging frequency varies.</P>
+        </Section>
+
         <Section title="Children's Privacy">
           <P>Our services are directed to adults operating commercial motor vehicle businesses. We do not knowingly collect personal information from individuals under 18 years of age.</P>
         </Section>
@@ -124,6 +133,7 @@ export default function PrivacyPolicyPage() {
         <Section title="Contact">
           <P>Questions about this policy or your data:</P>
           <P>LaunchPath Transportation Education LLC<br />
+          Phone: <a href="tel:+13363298899" style={{ color: T.goldText, textDecoration: "none" }}>(336) 329-8899</a><br />
           Email: <a href="mailto:info@launchpathedu.com" style={{ color: T.goldText, textDecoration: "none" }}>info@launchpathedu.com</a></P>
         </Section>
 
