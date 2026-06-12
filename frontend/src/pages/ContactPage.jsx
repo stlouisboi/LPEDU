@@ -235,7 +235,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                {/* SMS Consent — required for 10DLC */}
+                {/* SMS Consent — optional, included for 10DLC compliance */}
                 <div
                   data-testid="sms-consent-block"
                   style={{
