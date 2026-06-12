@@ -254,13 +254,7 @@ export default function ContactPage() {
                       style={{ marginTop: 3, flexShrink: 0, accentColor: "#C8A96E", width: 16, height: 16, cursor: "pointer" }}
                     />
                     <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.800rem", color: "rgba(255,255,255,0.70)", lineHeight: 1.75 }}>
-                      By checking this box, I agree to receive SMS communications from LaunchPath Transportation EDU LLC regarding my inquiry, appointment confirmations, and program updates.{" "}
-                      <span style={{ color: "rgba(255,255,255,0.45)" }}>
-                        Messaging frequency may vary. Message and data rates may apply. Reply <strong style={{ color: "rgba(255,255,255,0.65)" }}>STOP</strong> to opt out at any time. Reply <strong style={{ color: "rgba(255,255,255,0.65)" }}>HELP</strong> for assistance or call (336) 329-8899.{" "}
-                      </span>
-                      <a href="/privacy-policy" style={{ color: "#C8A96E", textDecoration: "none" }}>Privacy Policy</a>
-                      {" · "}
-                      <a href="/terms-of-service" style={{ color: "#C8A96E", textDecoration: "none" }}>Terms of Service</a>
+                      By checking this box, I consent to receive SMS from LaunchPath Transportation EDU LLC. Reply STOP to opt-out; Reply HELP for support; Message &amp; data rates may apply; Messaging frequency may vary. Visit <a href="/privacy-policy" style={{ color: "#C8A96E", textDecoration: "none" }}>https://launchpathedu.com/privacy-policy</a> to see our privacy policy and <a href="/terms-of-service" style={{ color: "#C8A96E", textDecoration: "none" }}>https://launchpathedu.com/terms-of-service</a> for our Terms of Service.
                     </span>
                   </label>
                 </div>
